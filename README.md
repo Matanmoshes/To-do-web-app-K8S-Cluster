@@ -9,23 +9,38 @@ This is a simple Todo application built with Python and Streamlit. The applicati
 - `Dockerfile`: Instructions to Docker for how to build the image for this application.
 - `requirements.txt`: Lists all the Python libraries that are required for this application.
 
-## Setup & Run
+## Getting Started
 
-### Using Docker
+### 1. Clone the repository
+
+To clone this repository, open a terminal and run:
+
+```bash
+git clone https://github.com/Matanmoshes/todo_web_app1.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd todo_web_app1
+```
+
+### 2. Setup & Run
+
+#### Using Docker:
 
 1. Make sure you have Docker installed on your machine.
-2. Navigate to the project directory.
-3. Build the Docker image:
+2. Build the Docker image:
    ```bash
    docker build -t todo-app .
    ```
-4. Run the application:
+3. Run the application:
    ```bash
    docker run -p 8501:8501 todo-app
    ```
-5. Open a web browser and navigate to `http://localhost:8501` to access the app.
+4. Open a web browser and navigate to `http://localhost:8501` to access the app.
 
-### Without Docker
+#### Without Docker:
 
 1. Ensure you have Python installed.
 2. Install the required libraries:
@@ -40,7 +55,4 @@ This is a simple Todo application built with Python and Streamlit. The applicati
 
 ## Contributions
 
-If you would like to contribute or have any suggestions, please fork the repository or open an issue. 
-
-
-
+If you would like to contribute or have any suggestions, please fork the repository or open an issue.
