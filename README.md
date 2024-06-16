@@ -76,26 +76,6 @@ kubectl logs <nginx-pod-name>
 kubectl logs <todo-app-pod-name>
 ```
 
-### Git Operations
-
-- To view the remote repository:
-```bash
-git remote -v
-```
-
-- To fetch and merge changes from the remote repository:
-```bash
-git fetch origin
-git merge origin/master
-```
-
-- To push changes to the remote repository:
-```bash
-git push origin master
-```
-
-
-
 ### Acknowledgements
 
 - Kubernetes
