@@ -1,58 +1,105 @@
-# todo_web_app1
 
-This is a simple Todo application built with Python and Streamlit. The application allows you to maintain a list of to-do items, and you can deploy and run it within a Docker container.
 
-## Project Structure
+```markdown
+# To-do Web App K8S Cluster
 
-- `web.py`: The main Streamlit application file.
-- `functions.py`: Contains utility functions for handling the to-do list, like reading from and writing to a file.
-- `Dockerfile`: Instructions to Docker for how to build the image for this application.
-- `requirements.txt`: Lists all the Python libraries that are required for this application.
+This project sets up a Kubernetes (K8S) cluster to deploy a Python-based to-do web application using Nginx as a reverse proxy.
+
+## Prerequisites
+
+- Docker
+- Minikube
+- Kubectl
+- Git
 
 ## Getting Started
 
-### 1. Clone the repository
-
-To clone this repository, open a terminal and run:
+### Clone the Repository
 
 ```bash
-git clone https://github.com/Matanmoshes/todo_web_app1.git
+git clone https://github.com/Matanmoshes/To-do-web-app-K8S-Cluster.git
+cd To-do-web-app-K8S-Cluster
 ```
 
-Navigate to the project directory:
+### Setup Minikube
 
+Start Minikube:
 ```bash
-cd todo_web_app1
+minikube start
 ```
 
-### 2. Setup & Run
+### Deploy the Application
 
-#### Using Docker:
+1. **Deploy the To-do App**
 
-1. Make sure you have Docker installed on your machine.
-2. Build the Docker image:
-   ```bash
-   docker build -t todo-app .
-   ```
-3. Run the application:
-   ```bash
-   docker run -p 8501:8501 todo-app
-   ```
-4. Open a web browser and navigate to `http://localhost:8501` to access the app.
+Apply the deployment and service for the to-do app:
+```bash
+kubectl apply -f todo-app-deployment.yaml
+kubectl apply -f todo-app-service.yaml
+```
 
-#### Without Docker:
+2. **Deploy Nginx as Reverse Proxy**
 
-1. Ensure you have Python installed.
-2. Install the required libraries:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run the Streamlit app:
-   ```bash
-   streamlit run web.py
-   ```
-4. Open a web browser and navigate to the link provided in the terminal.
+Apply the deployment, config map, and service for Nginx:
+```bash
+kubectl apply -f nginx-deployment.yaml
+kubectl apply -f nginx-configmap.yaml
+kubectl apply -f nginx-service.yaml
+```
 
-## Contributions
+### Accessing the Application
 
-If you would like to contribute or have any suggestions, please fork the repository or open an issue.
+To access the application, find the Minikube IP and the NodePort assigned to the Nginx service:
+
+1. Get the Minikube IP:
+```bash
+minikube ip
+```
+
+2. Get the NodePort for the Nginx service:
+```bash
+kubectl get svc nginx-service
+```
+
+Combine the Minikube IP and NodePort to access the application. For example, if the Minikube IP is `192.168.49.2` and the NodePort is `31274`, open:
+
+```
+http://192.168.49.2:31274
+```
+
+### Troubleshooting
+
+If you encounter any issues, check the logs of the pods:
+```bash
+kubectl get pods
+kubectl logs <nginx-pod-name>
+kubectl logs <todo-app-pod-name>
+```
+
+### Git Operations
+
+- To view the remote repository:
+```bash
+git remote -v
+```
+
+- To fetch and merge changes from the remote repository:
+```bash
+git fetch origin
+git merge origin/master
+```
+
+- To push changes to the remote repository:
+```bash
+git push origin master
+```
+
+
+
+### Acknowledgements
+
+- Kubernetes
+- Minikube
+- Docker
+- Nginx
+
