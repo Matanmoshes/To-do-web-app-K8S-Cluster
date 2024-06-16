@@ -1,6 +1,6 @@
 
 
-```markdown
+
 # To-do Web App K8S Cluster
 
 This project sets up a Kubernetes (K8S) cluster to deploy a Python-based to-do web application using Nginx as a reverse proxy.
