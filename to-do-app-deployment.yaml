@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: to-do-app
+  template:
+    metadata:
+      labels:
+        app: to-do-app
+    spec:
+      containers:
+      - name: to-do-app
+        image: matanm66/to-do-app:v1
+        ports:
+        - containerPort: 8501
+        resources:
+          requests:
+            memory: "64Mi"  # Minimum amount of memory the container needs
+            cpu: "250m"     # Minimum amount of CPU the container needs
+          limits:
+            memory: "128Mi" # Maximum amount of memory the container is allowed to use
+            cpu: "500m"     # Maximum amount of CPU the container is allowed to use
